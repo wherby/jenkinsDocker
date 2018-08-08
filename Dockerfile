@@ -20,6 +20,10 @@ RUN apt-get update && \
 	apt-get update && \
 	apt-get -y install docker-ce
 
+USER root 
+RUN gpasswd -a jenkins docker
+
+
 USER jenkins
 COPY plugins.txt /usr/share/jenkins/plugins.txt
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
